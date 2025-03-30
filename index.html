@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="index.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+     
+</head>
+<body>
+  <div id="preloader"></div>
+<nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">Mohan Sai</a>
+      <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <container>
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide"><img src="images/hero.jpg"></div>
+          <div class="swiper-slide"><img src="images/hero2.jpg"></div>
+          <div class="swiper-slide"><img src="images/hero3.jpg"></div>
+          
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+      
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+      </div>
+  </container>
+  
+  <!-- Sample Sections -->
+  <div class="element">
+  <section id="home">
+    <div class="hero-section">
+    <div class="autotext">
+      <h1> Hello <span class="auto-type"></span></h1>
+
+      </div>
+    </div>
+    </div>
+  </section>
+  <section id="about">
+    
+    <div class="card">
+      <img src="images/IMG_20240622_144515.jpg" alt="Beautiful Nature">
+      <div class="card-content">
+          <h2>About Me</h2>
+          <p>Experience the breathtaking beauty of nature. Relax and enjoy the serenity.</p>
+          <a href="#" class="btn">Explore More</a>
+      </div>
+  </div>
+  </div>
+  </div>
+  </section>
+  <section id="projects">
+    <div class="container">
+      <div class="card">
+          <h3>Project One</h3>
+          <p>A brief description of your project. It highlights key features.</p>
+          <a href="#" class="btn">View Project</a>
+      </div>
+
+      <div class="card">
+          <h3>Project Two</h3>
+          <p>A brief description of your project. It highlights key features.</p>
+          <a href="#" class="btn">View Project</a>
+      </div>
+  </section>
+  <section id="contact">
+    <form name="submit-to-google-sheet">
+      <div class="input-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" required>
+      </div>
+      <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" required>
+      </div>
+      <div class="input-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="Message" rows="4" required></textarea>
+      </div>
+      <button type="submit">Send Message</button>
+      <span id="msg"></span>
+  </form>
+  </section>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+     autoplay:{
+        delaay:3000,
+        disableOnInteraction:false,
+     },
+  loop: true,
+
+  pagination: {
+    el: '.swiper-pagination',
+    clickable:true,
+  },
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  
+});
+  </script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script>
+    var typed = new Typed(".auto-type",{
+      strings:["Where creativity meets functionality","I am Mohan Sai"],
+      typeSpeed:150,
+      backSpeed:150,
+      loop:true
+    })
+  </script>
+    
+  <script src="index.js"></script>
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Thank U</h3>
+            <p>We look forward to welcoming you again soon!</p>
+        </div>
+        
+        <div class="footer-section social-icons">
+            <h3>Follow Us</h3>
+            <a href="https://instagram.com" target="_blank">
+              <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+          <a href="https://facebook.com" target="_blank">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://twitter.com" target="_blank">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a href="https://linkedin.com" target="_blank">
+            <ion-icon name="logo-linkedin"></ion-icon>
+        </a>
+        <a href="https://github.com" target="_blank">
+          <ion-icon name="logo-github"></ion-icon>
+      </a>
+
+        </div>
+    </div>
+</footer>
+
+<script>
+  var loader=document.getElementById("preloader");
+  window.addEventListener("load",function(){
+     loader.style.display="none";
+
+  })
+</script>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby2BFPYXpIbMsJDkN9-79owk7XxlLx1qWJZE9Nt8-nSfC8GZ6nA8JQ0LoZ8CjUGgdzF/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg=document.getElementById('msg')
+  form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            msg.innerHTML="Message Sent Successfully"
+            setTimeout(function(){
+             msg.innerHTML="" 
+            },5000)
+            form.reset()
+          })
+          .catch(error => console.error('Error!', error.message))
+      })
+
+  
+</script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
